@@ -13,6 +13,7 @@ beforeAll(() => {
     document.close();
 });
 
+/// Checks the global varibles are testing correctly 
 describe("game object contains correct keys", () => {
     test("score key exists", () => {
         expect("score" in game).toBe(true);
@@ -34,6 +35,7 @@ describe("game object contains correct keys", () => {
     });
 });
 
+/// Checks the newGame function is working correctly
 describe("newGame works correctly", () => {
     beforeAll(() => {
         game.score = 42;
@@ -54,8 +56,16 @@ describe("newGame works correctly", () => {
     test("should add one move to the computer's game array", () => {
         expect(game.currentGame.length).toBe(1);
     });
+    test("expect data-listener to be true", () => {
+        newGame();
+        const elements = document.getElementsByClassName("circle");
+        for (let element of elements) {
+            expect(element.getAttribute("data-listener")).toEqual("true");
+        }
+    });
 });
 
+/// Checks the other subsquent functions are working correctly
 describe("gameplay works correctly", () => {
     beforeEach(() => {
         game.score = 0;
